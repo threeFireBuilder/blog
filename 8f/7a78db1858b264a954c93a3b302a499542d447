@@ -1,0 +1,72 @@
+README.md
+  s_5ec84729f20aa8::t_32f7d88f49e750 36-37
+  s_5ec84729f20aa8::t_ba3e7d1a39de93 1-35,38-94
+src/styles/global.css
+  s_5ec84729f20aa8::t_454b2d6bdd5495 2-847
+  s_5ec84729f20aa8::t_b9f2e9a60f1f6f 1
+src/pages/rss.xml.ts
+  s_5ec84729f20aa8::t_b1b93a4f59d7c1 10
+  s_5ec84729f20aa8::t_278effec03ce92 1-9,11-17
+package.json
+  s_5ec84729f20aa8::t_ebd87a98dc8efd 6-24
+  s_5ec84729f20aa8::t_7e5281bbf16fbd 1-5,25
+scripts/new-post.mjs
+  s_5ec84729f20aa8::t_32f7d88f49e750 2-15
+  s_5ec84729f20aa8::t_0361aeefff4f80 1,16-19
+.github/workflows/deploy.yml
+  s_5ec84729f20aa8::t_1999be5428be90 1-48
+.gitignore
+  s_5ec84729f20aa8::t_2a9809a936417a 1-8
+.nvmrc
+  s_5ec84729f20aa8::t_0a7f1aa3a72e23 1
+astro.config.mjs
+  s_5ec84729f20aa8::t_18e9b6bcdd44cf 1-10
+package-lock.json
+  s_5ec84729f20aa8::t_74634f3d18ca24 1-4961
+public/favicon.svg
+  s_5ec84729f20aa8::t_993203a82180b3 1
+src/components/PostCard.astro
+  s_5ec84729f20aa8::t_1ef902c380494a 1-11
+src/config.ts
+  s_5ec84729f20aa8::t_eae659af49f6e9 1-12
+src/content.config.ts
+  s_5ec84729f20aa8::t_62f5edb8a0e569 1-16
+src/content/posts/hello-world.md
+  s_5ec84729f20aa8::t_d82c13bf974740 1-35
+src/layouts/Base.astro
+  s_5ec84729f20aa8::t_a7739defc33826 1-38
+src/lib/posts.ts
+  s_5ec84729f20aa8::t_aed2fb4d793613 1-6
+src/pages/404.astro
+  s_5ec84729f20aa8::t_1aaf653a52b9ae 1-5
+src/pages/about.astro
+  s_5ec84729f20aa8::t_50c6e523806b54 1-5
+src/pages/archive.astro
+  s_5ec84729f20aa8::t_15767682fefba6 1-23
+src/pages/index.astro
+  s_5ec84729f20aa8::t_52212991df100b 1-19
+src/pages/posts/[...id].astro
+  s_5ec84729f20aa8::t_3e0e8e5189d061 1-17
+src/pages/tags/[tag].astro
+  s_5ec84729f20aa8::t_b250f8a57a0d93 1-12
+src/pages/tags/index.astro
+  s_5ec84729f20aa8::t_26bfc72bebe6cd 1-8
+tsconfig.json
+  s_5ec84729f20aa8::t_a673212ecc3abe 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8f7a78db1858b264a954c93a3b302a499542d447",
+  "prompts": {},
+  "sessions": {
+    "s_5ec84729f20aa8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a642-6f50-7e61-98f9-0af2c4cc4243",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zhangyan <1192528707@qq.com>"
+    }
+  }
+}
