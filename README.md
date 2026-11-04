@@ -30,6 +30,8 @@ npm run preview # 预览构建结果
 
 此后推送到 `main` 会自动发布。Pull Request 只做检查和构建，不部署。无需添加个人 Token 或其他 Secret；工作流使用 GitHub 自动提供的 `GITHUB_TOKEN`。
 
+如果 Actions 提示 `Get Pages site failed` 或 `Not Found`，先确认仓库中已经有 `main` 分支，再刷新 Settings → Pages 并重新选择 GitHub Actions。仅看到 Source 下拉框显示 GitHub Actions，并不能证明站点已成功创建；以工作流 deploy 成功为准。启用后重新运行失败任务即可。
+
 如果本地尚未初始化 Git，可先执行：
 
 ```bash
