@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../lib/posts';
+import { url } from '../../config';
+const posts = await getPosts();
+const tags = [...new Set(posts.flatMap(post => post.data.tags))].sort((a, b) => a.localeCompare(b, 'zh-CN'));
+---
+<Base title="标签"><section class="page-heading"><p class="eyebrow">FOLLOW A THREAD</p><h1>沿着兴趣，继续探索。</h1><p>从一个关键词，找到相关的记录。</p></section><div class="tag-grid">{tags.map(tag => <a href={url(`tags/${encodeURIComponent(tag)}/`)}><span>{tag}</span><span>{posts.filter(post => post.data.tags.includes(tag)).length} 篇 ↗</span></a>)}</div>{!tags.length && <p class="empty-state">发布文章后，标签会出现在这里。</p>}</Base>

@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../lib/posts';
+const posts = await getPosts();
+---
+<Base title="文章归档">
+  <section class="page-heading"><p class="eyebrow">THE ARCHIVE</p><h1>每一步，都算数。</h1><p>共 {posts.length} 篇记录，按时间排列。</p></section>
+  <label class="search-label" for="search">查找文章</label><input id="search" class="search-input" type="search" placeholder="搜索标题、摘要或标签…" autocomplete="off" />
+  <section aria-label="文章列表">{posts.map(post => <PostCard post={post} />)}</section>
+  <p id="search-status" class="empty-state" role="status" aria-live="polite" hidden>没有匹配的文章，试试其他关键词。</p>
+</Base>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#search');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+  input?.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase();
+    let count = 0;
+    cards.forEach(card => { card.hidden = !card.dataset.search?.includes(query); if (!card.hidden) count++; });
+    const status = document.querySelector<HTMLElement>('#search-status');
+    if (status) status.hidden = count > 0;
+  });
+</script>
