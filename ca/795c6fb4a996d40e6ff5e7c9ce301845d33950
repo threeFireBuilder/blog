@@ -1,0 +1,19 @@
+README.md
+  s_5ec84729f20aa8::t_8f89fe4fb2eebe 33-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ca795c6fb4a996d40e6ff5e7c9ce301845d33950",
+  "prompts": {},
+  "sessions": {
+    "s_5ec84729f20aa8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a642-6f50-7e61-98f9-0af2c4cc4243",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zhangyan <1192528707@qq.com>"
+    }
+  }
+}
