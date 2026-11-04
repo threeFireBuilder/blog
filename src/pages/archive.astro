@@ -3,21 +3,59 @@ import Base from '../layouts/Base.astro';
 import PostCard from '../components/PostCard.astro';
 import { getPosts } from '../lib/posts';
 const posts = await getPosts();
+const calendar = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric', month: 'numeric', timeZone: 'Asia/Shanghai',
+});
+// getPosts() 已按日期倒序；Map 保留顺序，年月分组与站内显示使用相同时区。
+const years = new Map<string, Map<string, typeof posts>>();
+for (const post of posts) {
+  const parts = calendar.formatToParts(post.data.date);
+  const year = parts.find(part => part.type === 'year')!.value;
+  const month = parts.find(part => part.type === 'month')!.value;
+  if (!years.has(year)) years.set(year, new Map());
+  const months = years.get(year)!;
+  if (!months.has(month)) months.set(month, []);
+  months.get(month)!.push(post);
+}
 ---
 <Base title="文章归档">
-  <section class="page-heading"><p class="eyebrow">THE ARCHIVE</p><h1>每一步，都算数。</h1><p>共 {posts.length} 篇记录，按时间排列。</p></section>
-  <label class="search-label" for="search">查找文章</label><input id="search" class="search-input" type="search" placeholder="搜索标题、摘要或标签…" autocomplete="off" />
-  <section aria-label="文章列表">{posts.map(post => <PostCard post={post} />)}</section>
-  <p id="search-status" class="empty-state" role="status" aria-live="polite" hidden>没有匹配的文章，试试其他关键词。</p>
+  <section class="page-heading"><p class="eyebrow">THE ARCHIVE</p><h1>文章归档</h1><p>共 {posts.length} 篇记录，按年月整理，最新的在前。</p></section>
+  <label class="search-label" for="search">查找文章</label>
+  <input id="search" class="search-input" type="search" placeholder="搜索标题、摘要或标签…" autocomplete="off" aria-controls="archive-list" />
+  <p id="search-status" class="search-status" role="status" aria-live="polite" hidden={posts.length > 0}>还没有已发布的文章。</p>
+  <div id="archive-list">
+    {[...years].map(([year, months]) => (
+      <section class="archive-year" data-archive-year aria-labelledby={`year-${year}`}>
+        <h2 class="archive-year-heading" id={`year-${year}`}>{year} 年 <span class="count" data-year-count>{[...months.values()].flat().length} 篇</span></h2>
+        {[...months].map(([month, entries]) => (
+          <section class="archive-month" data-archive-month aria-labelledby={`month-${year}-${month}`}>
+            <h3 class="archive-month-heading" id={`month-${year}-${month}`}>{month} 月 <span class="count" data-month-count>{entries.length} 篇</span></h3>
+            {entries.map(post => <PostCard post={post} heading="h4" />)}
+          </section>
+        ))}
+      </section>
+    ))}
+  </div>
 </Base>
 <script>
   const input = document.querySelector<HTMLInputElement>('#search');
   const cards = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+  const months = [...document.querySelectorAll<HTMLElement>('[data-archive-month]')];
+  const years = [...document.querySelectorAll<HTMLElement>('[data-archive-year]')];
   input?.addEventListener('input', () => {
     const query = input.value.trim().toLowerCase();
     let count = 0;
     cards.forEach(card => { card.hidden = !card.dataset.search?.includes(query); if (!card.hidden) count++; });
+    for (const group of [...months, ...years]) {
+      const visible = group.querySelectorAll('[data-post]:not([hidden])').length;
+      group.hidden = visible === 0;
+      const label = group.querySelector('[data-year-count], [data-month-count]');
+      if (label) label.textContent = `${visible} 篇`;
+    }
     const status = document.querySelector<HTMLElement>('#search-status');
-    if (status) status.hidden = count > 0;
+    if (status) {
+      status.hidden = query === '' && cards.length > 0;
+      status.textContent = count > 0 ? `找到 ${count} 篇相关文章。` : cards.length === 0 ? '还没有已发布的文章。' : '没有匹配的文章，试试其他关键词。';
+    }
   });
 </script>

@@ -1,6 +1,6 @@
 # ThreeFire · 三火的博客
 
-基于 Astro 的中文静态博客，使用 Markdown 写作，使用 GitHub Actions 发布到 GitHub Pages。
+基于 Astro 的极简中文博客，使用 Markdown 写作，使用 GitHub Actions 发布到 GitHub Pages。首页展示最新文章，支持标签浏览和按年、月分组的时间归档。
 
 **配置的发布地址：<https://threefirebuilder.github.io/blog/>**（首次推送并开启 Pages 后生效）
 
@@ -67,9 +67,10 @@ draft: false
 
 - `draft: true`：草稿，不出现在网站、RSS 和 sitemap 中（包括本地预览）。准备发布时改为 `false`。
 - 日期决定文章排序，不作定时发布；未来日期且 `draft: false` 的文章也会发布。
+- 首页、标签页和归档页均按日期倒序排列。归档页按年、月分组，分组与日期显示统一使用 `Asia/Shanghai` 时区。
 - 文件名决定网址，建议使用英文小写和短横线，例如 `java-thread-pool.md`。
 - 图片放在 `public/images/` 中，在 Markdown 使用 `![说明](/blog/images/example.png)`。
-- 搜索位于归档页，匹配标题、摘要和标签。
+- 搜索位于归档页，匹配标题、摘要和标签；无匹配文章的年月分组自动隐藏，清空搜索恢复全部记录。
 - 默认的 `hello-world.md` 是开站示例，可以修改或删除。
 
 ## 定制博客
