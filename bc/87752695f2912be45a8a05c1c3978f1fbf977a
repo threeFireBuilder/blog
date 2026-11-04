@@ -1,0 +1,33 @@
+README.md
+  s_5ec84729f20aa8::t_3c58fed86846d3 3,70,73
+src/components/PostCard.astro
+  s_5ec84729f20aa8::t_3c58fed86846d3 4-5,8-9
+src/styles/global.css
+  s_5ec84729f20aa8::t_4d689041303c2d 1,3-29,32-167
+src/pages/archive.astro
+  s_5ec84729f20aa8::t_3c58fed86846d3 6-19,22-38,43-44,49-54,56-59
+src/pages/index.astro
+  s_5ec84729f20aa8::t_3c58fed86846d3 10-12,15
+src/pages/tags/[tag].astro
+  s_5ec84729f20aa8::t_4d689041303c2d 12
+src/pages/tags/index.astro
+  s_5ec84729f20aa8::t_4d689041303c2d 8
+src/layouts/Base.astro
+  s_5ec84729f20aa8::t_3c58fed86846d3 17,31,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bc87752695f2912be45a8a05c1c3978f1fbf977a",
+  "prompts": {},
+  "sessions": {
+    "s_5ec84729f20aa8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a642-6f50-7e61-98f9-0af2c4cc4243",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zhangyan <1192528707@qq.com>"
+    }
+  }
+}
